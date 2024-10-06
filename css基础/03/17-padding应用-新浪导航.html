@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,10 @@
             background-color: #fcfcfc;
             line-height: 41px;
         }
+
+        /* 在CSS中，行内元素（包括转换为inline-block的元素）之间默认会有一个空白间隙，
+这是因为HTML中的空格、换行符等被浏览器解析为了一个空白字符。当这些元素变成inline-block时，
+这个空白字符也会占据一定的空间，从而导致元素之间出现了缝隙。 */
         .nav a {
             /* a属于行内元素 此时必须要转换 行内块元素 */
             display: inline-block;
@@ -22,12 +27,14 @@
             color: #4c4c4c;
             text-decoration: none;
         }
+
         .nav a:hover {
             background-color: #eee;
             color: #ff8500;
         }
     </style>
 </head>
+
 <body>
     <div class="nav">
         <a href="#">新浪导航</a>
@@ -37,4 +44,5 @@
         <a href="#">三个字</a>
     </div>
 </body>
+
 </html>
