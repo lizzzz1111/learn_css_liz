@@ -1,9 +1,13 @@
 # 学习资料
+
 [前端进阶之旅](https://interview.poetries.top/)
 [前端面试官系列](https://vue3js.cn/interview/)
 [手写题仓库](https://github.com/Sunny-117/js-challenges)
-# css
+
+# css基础
+
 #### 什么是css
+
 CSS 是 Cascading Style Sheets（层叠样式表）的缩写，是一种用来描述 HTML 或 XML（包括如 SVG、XHTML 等各种 XML 文档）文档样式的样式表语言。**它主要用于控制网页内容的表现形式，比如字体、颜色、间距、布局等视觉效果。**
 
 CSS 的主要功能和特点包括：
@@ -21,7 +25,9 @@ CSS 的主要功能和特点包括：
 6. **增强用户体验**：合理利用 CSS 可以创建更吸引人的用户界面，提升用户的浏览体验。
 
 #### css的特性
+
 1. 层叠性：同一元素的选择器，后面的样式会覆盖前面的
+
   ````
   //这里div的字体颜色会是pink
        div {
@@ -32,21 +38,25 @@ CSS 的主要功能和特点包括：
            color: pink;
        }
   ````
+
 2. 继承性
 
 案例1：字体颜色继承
+
 ````
     div {
         color: pink;
         font-size: 14px;
     }
 ````
+
 ````
 //这里p会继承父元素div
     <div>
         <p>我的字体会是粉色</p>
     </div>
 ````
+
 案例2：行高继承
 
 ````
@@ -74,6 +84,7 @@ CSS 的主要功能和特点包括：
         */
     </style>
 ````
+
 ````
 <body>
     <div>粉红色的回忆</div>
@@ -85,13 +96,13 @@ CSS 的主要功能和特点包括：
 ````
 
 #### css权重
+
 1. 类、属性和伪类选择器：包括 .class、[attribute] 和 :pseudo-class 等。
 2. ID选择器：使用 #id 选择器指定的样式次之。
 3. 元素类型选择器和伪元素：如 div、p 或 ::before。
 4. 内联样式：直接写在HTML标签上的style属性具有最高的优先级。
-5. !important 
+5. !important
 6. css继承
-
 
 每个等级的权重值分别是：
 
@@ -103,16 +114,20 @@ ID选择器：0,1,0,0
 继承：0,**即使父元素css有!important继承权重也是0**
 
 ##### <font color=red>注意</font>
-1. 复合选择器会有权重叠加的问题 
-2. 权重虽然会叠加,但是永远不会有进位 
+
+1. 复合选择器会有权重叠加的问题
+2. 权重虽然会叠加,但是永远不会有进位
 
 #### css盒子模型
+
 ##### 是什么
+
 当对一个文档进行布局（layout）的时候，浏览器的渲染引擎会根据标准之一的 CSS 基础框盒模型（CSS basic box model），将所有元素表示为一个个矩形的盒子（box）
 一个盒子由四个部分组成：content、padding、border、margin
 ![alt text](盒子模型3d.png)
 
 box-sizing 属性定义了引擎应该如何计算一个元素的总宽度和总高度
+
 1. **box-sizing: border-box; 怪异盒子**
 width/height **包含**了 padding和 border值
 盒子总宽度 = width + margin;
@@ -123,6 +138,7 @@ width/height 只是内容高度，**不包含** padding 和 border值
 盒子总高度 = height + padding + border + margin
 
 #### 清除内外边距
+
     * {
         margin: 0;
         padding: 0;
@@ -130,10 +146,73 @@ width/height 只是内容高度，**不包含** padding 和 border值
 将所有元素的默认外边距（margin）和内边距（padding）设置为0。这样做的主要目的是消除浏览器对不同元素所应用的默认样式，这些默认样式可能会导致布局不一致或不符合设计预期。
 
 #### 清除行内块元素中间的缝隙
+
 在CSS中，行内元素（包括转换为inline-block的元素）之间默认会有一个空白间隙，这是因为HTML中的空格、换行符等被浏览器解析为了一个空白字符。当这些元素变成inline-block时，这个空白字符也会占据一定的空间，从而导致元素之间出现了缝隙。
-###### 清除方法：float: left;
+
+###### 清除方法：float: left
+
+#### 外边距塌陷
+
+        .father {
+            width: 400px;
+            height: 400px;
+            background-color: purple;
+            margin-top: 50px;
+            /*  */
+            overflow: hidden;
+        }
+
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin-top: 100px;
+        }
+
+##### BFC
+
+#### 合并相邻的边框
+
+        table,
+        td,
+        th {
+            border: 1px solid pink;
+            /* 合并相邻的边框 */
+            /* 合并之后是细线表格 */
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: center;
+        }
+
+#### padding不改变盒子模型大小的情况
+
+       div {
+           width: 300px;
+           height: 100px;
+           background-color: purple;
+       }
+       div p {
+           padding: 30px;
+           background-color: skyblue;
+       }
+
+#### 盒子阴影
+
+div:hover {
+    box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, .3);
+    /*设置阴影效果：
+       - 第一个值（10px）：水平偏移量，正值表示向右偏移。
+       - 第二个值（10px）：垂直偏移量，正值表示向下偏移。
+       - 第三个值（10px）：模糊半径，数值越大，阴影越模糊。
+       - 第四个值（-4px）：扩展半径，负值会使阴影缩小，正值会使阴影扩大。
+       - 最后一个值（rgba(0, 0, 0, .3)）：阴影的颜色，这里使用 RGBA 颜色模式，其中：
+         - 0, 0, 0 表示黑色。
+         - .3 是不透明度，取值范围为 0 到 1，0 完全透明，1 完全不透明。
+       */
+}
 
 #### 圆角边框
+
     .round {
         width: 200px;
         height: 200px;
@@ -144,3 +223,15 @@ width/height 只是内容高度，**不包含** padding 和 border值
     }
 
 #### 浮动
+
+float 属性用于指定一个元素应如何沿其容器的左侧或右侧放置，允许其他内容（如文本）围绕它。
+
+#### css相对长度单位
+
+###### em和rem
+
+em 和 rem 分别相对于父元素和根元素的字体大小
+
+###### vh和vw
+
+vh 和 vw 分别相对于视口的高度和宽度。
